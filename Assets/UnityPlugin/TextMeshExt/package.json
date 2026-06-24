@@ -6,7 +6,7 @@
   "description": "Ext for TextMeshPro",
   "keywords": [],
   "dependencies": {
-    "com.unity.ugui": ">=2.0.0",
-    "com.zerowq.unityplugin.imguiutils": "git@github.com:UnityPlugin/IMGUIUtils.git?path=/Assets/UnityPlugin/IMGUIUtils"
+    "com.unity.ugui": "2.0.0",
+    "com.zerowq.unityplugin.imguiutils": "1.0.0"
   }
 }

@@ -1,0 +1,16 @@
+{
+    "name": "TextMeshExt.Editor",
+    "rootNamespace": "TextMeshExt",
+    "references": [
+        "GUID:834845f6e6421e543b75627e1aa41f29"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
