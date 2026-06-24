@@ -1,0 +1,12 @@
+{
+  "name": "com.zerowq.unityplugin.tmpext",
+  "displayName": "TextMeshPro Ext",
+  "unity": "2022.3",
+  "version": "1.0.0",
+  "description": "Ext for TextMeshPro",
+  "keywords": [],
+  "dependencies": {
+    "com.unity.ugui": ">=2.0.0",
+    "com.zerowq.unityplugin.imguiutils": "git@github.com:UnityPlugin/IMGUIUtils.git?path=/Assets/UnityPlugin/IMGUIUtils"
+  }
+}
