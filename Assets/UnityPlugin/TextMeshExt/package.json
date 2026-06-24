@@ -4,6 +4,9 @@
   "unity": "2022.3",
   "version": "1.0.0",
   "description": "Ext for TextMeshPro",
+  "author": {
+    "name": "zeroWq"
+  },
   "keywords": [],
   "dependencies": {
     "com.unity.ugui": "2.0.0",

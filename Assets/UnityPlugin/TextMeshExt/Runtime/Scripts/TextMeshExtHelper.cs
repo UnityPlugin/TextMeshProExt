@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace TextMeshExt
@@ -90,12 +89,12 @@ namespace TextMeshExt
 
                 if (_key.outlineColor != null && mat.HasProperty(PROPERTY_OUTLINECOLOR))
                 {
-                    c1 = _key.outlineColor.Value.ToHexString();
+                    c1 = ColorUtility.ToHtmlStringRGBA(_key.outlineColor.Value);
                     mat.SetColor(PROPERTY_OUTLINECOLOR, _key.outlineColor.Value);
                 }
                 if (_key.underlayColor != null && mat.HasProperty(PROPERTY_UNDERLINECOLOR))
                 {
-                    c2 = _key.underlayColor.Value.ToHexString();
+                    c2 = ColorUtility.ToHtmlStringRGBA(_key.underlayColor.Value);
                     mat.SetColor(PROPERTY_UNDERLINECOLOR, _key.underlayColor.Value);
                 }
 

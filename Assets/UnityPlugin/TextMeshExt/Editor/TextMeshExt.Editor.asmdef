@@ -2,6 +2,7 @@
     "name": "TextMeshExt.Editor",
     "rootNamespace": "TextMeshExt",
     "references": [
+        "GUID:eb81c7907f76bba4aaf906f5a3d242eb",
         "GUID:834845f6e6421e543b75627e1aa41f29"
     ],
     "includePlatforms": [],
