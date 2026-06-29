@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace TextMeshExt
+namespace UnityPlugin
 {
     [RequireComponent(typeof(TMP_Text))]
     [DisallowMultipleComponent]
     [ExecuteInEditMode]
-    public class TextMeshExtHelper : MonoBehaviour
+    public class TextMeshProHelper : MonoBehaviour
     {
         public struct FontMaterialKey : IEquatable<FontMaterialKey>
         {

@@ -1,9 +1,9 @@
 {
-    "name": "TextMeshExt.Editor",
-    "rootNamespace": "TextMeshExt",
+    "name": "UnityPlugin.TextMeshProExt.Editor",
+    "rootNamespace": "UnityPlugin",
     "references": [
-        "GUID:eb81c7907f76bba4aaf906f5a3d242eb",
-        "GUID:834845f6e6421e543b75627e1aa41f29"
+        "UnityPlugin.IMGUIUtils.Editor",
+        "UnityPlugin.TextMeshProExt.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

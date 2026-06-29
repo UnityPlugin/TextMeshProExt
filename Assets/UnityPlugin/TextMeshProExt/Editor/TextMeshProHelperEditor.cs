@@ -1,24 +1,22 @@
 using UnityEditor;
 using UnityEngine;
-using IMGUIUtils = IMGUI.Utils;
 
-namespace TextMeshExt
+namespace UnityPlugin
 {
-    [CustomEditor(typeof(TextMeshExtHelper))]
-    public class TextMeshExtHelperEditor : Editor
+    [CustomEditor(typeof(TextMeshProHelper))]
+    public class TextMeshProHelperEditor : Editor
     {
-        TextMeshExtHelper _target;
+        TextMeshProHelper _target;
 
         GUILayoutOption[] TOGGLE_LAYOUT = { GUILayout.Width(20) };
 
         void OnEnable()
         {
-            _target = target as TextMeshExtHelper;
+            _target = target as TextMeshProHelper;
         }
 
         public override void OnInspectorGUI()
         {
-            // base.OnInspectorGUI();
             var taregetProperty = serializedObject.FindProperty("target");
             var baseMaterialProperty = serializedObject.FindProperty("baseMaterial");
             var overrideOutlineProperty = serializedObject.FindProperty("overrideOutline");
@@ -26,33 +24,32 @@ namespace TextMeshExt
             var overrideUnderlayProperty = serializedObject.FindProperty("overrideUnderlay");
             var underlayProperty = serializedObject.FindProperty("underlay");
 
-            IMGUIUtils.Editable(() =>
+            using (IMGUIUtils.Editable(false))
             {
                 EditorGUILayout.PropertyField(taregetProperty);
-            }, false);
+            }
 
-            IMGUIUtils.Change(
-            () =>
+            using (IMGUIUtils.ChangeCheck())
             {
                 EditorGUILayout.PropertyField(baseMaterialProperty);
 
-                IMGUIUtils.PropertyHorizontal(outlineProperty.displayName, () =>
+                using (IMGUIUtils.PropertyHorizontal(outlineProperty.displayName))
                 {
                     overrideOutlineProperty.boolValue = EditorGUILayout.Toggle(overrideOutlineProperty.boolValue, TOGGLE_LAYOUT);
                     if (overrideOutlineProperty.boolValue)
                     {
                         outlineProperty.colorValue = EditorGUILayout.ColorField(outlineProperty.colorValue);
                     }
-                });
+                }
 
-                IMGUIUtils.PropertyHorizontal(underlayProperty.displayName, () =>
+                using (IMGUIUtils.PropertyHorizontal(underlayProperty.displayName))
                 {
                     overrideUnderlayProperty.boolValue = EditorGUILayout.Toggle(overrideUnderlayProperty.boolValue, TOGGLE_LAYOUT);
                     if (overrideUnderlayProperty.boolValue)
                     {
                         underlayProperty.colorValue = EditorGUILayout.ColorField(underlayProperty.colorValue);
                     }
-                });
+                }
 
                 if (baseMaterialProperty.boxedValue == null)
                 {
@@ -64,15 +61,15 @@ namespace TextMeshExt
                     }
                     EditorGUILayout.HelpBox(text);
                 }
-            },
-            () =>
+
+            }
+
+            if (IMGUIUtils.IsChange)
             {
                 serializedObject.ApplyModifiedProperties();
-
                 _target.UpdateMaterial();
-
                 GUIUtility.ExitGUI();
-            });
+            }
 
             EditorGUILayout.Space();
             var key = _target.GetKey();
@@ -85,11 +82,14 @@ namespace TextMeshExt
 
             EditorGUILayout.LabelField(IMGUIUtils.GetGUIContent("Total Mateials"), IMGUIUtils.GetGUIContent(matDict.Count.ToString()));
 
-            IMGUIUtils.Foldout("Current Material", () =>
+            using (var scope = IMGUIUtils.Foldout("Current Material", true))
             {
-                EditorGUILayout.ObjectField(IMGUIUtils.GetGUIContent("Material"), mat, typeof(Material), false);
-                EditorGUILayout.LabelField(IMGUIUtils.GetGUIContent("Ref"), IMGUIUtils.GetGUIContent(count.ToString()));
-            });
+                if (scope.fold)
+                {
+                    EditorGUILayout.ObjectField(IMGUIUtils.GetGUIContent("Material"), mat, typeof(Material), false);
+                    EditorGUILayout.LabelField(IMGUIUtils.GetGUIContent("Ref"), IMGUIUtils.GetGUIContent(count.ToString()));
+                }
+            }
 
             EditorGUILayout.Space();
             if (GUILayout.Button(IMGUIUtils.GetGUIContent("Clear")))
